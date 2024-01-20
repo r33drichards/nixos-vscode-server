@@ -74,12 +74,12 @@ systemctl --user start auto-fix-vscode-server.service
 
 Enabling the user service creates a symlink to the Nix store, but the linked store path could be garbage collected at some point. One workaround to this particular issue is creating the following symlink:
 ```bash
-ln -sfT /run/current-system/etc/systemd/user/auto-fix-vscode-server.service ~/.config/systemd/user/auto-fix-vscode-server.service
+ln -sfT /run/current-system/etc/systemd/user/auto-fix-vscode-server.service $HOME.config/systemd/user/auto-fix-vscode-server.service
 ```
 
 ### Home Manager
 
-Put this code into your [home-manager](https://github.com/nix-community/home-manager) configuration i.e. in `~/.config/nixpkgs/home.nix`:
+Put this code into your [home-manager](https://github.com/nix-community/home-manager) configuration i.e. in `$HOME.config/nixpkgs/home.nix`:
 
 ```nix
 {
@@ -144,7 +144,7 @@ The installation path for VS Code server is configurable and the default can dif
 
 ```nix
 {
-  services.vscode-server.installPath = "~/.vscode-server-oss";
+  services.vscode-server.installPath = "$HOME.vscode-server-oss";
 }
 ```
 
